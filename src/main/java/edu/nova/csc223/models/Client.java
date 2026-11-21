@@ -31,8 +31,8 @@ public record Client(String clientID, String doa, String name, String dob, Strin
     /**
      * Overloaded constructor. Created so i can add a List in the main compact constructor and use as a global parameter
      */
-    public  Client(String clientID, String name, String doa, String dob, String ssn, String address, String followUpDate, String firm, String phase, String phaseDate, String hashtag) {
-        this(clientID, name, doa, dob, ssn, address, followUpDate, firm, phase, phaseDate, hashtag, new ArrayList<>());
+    public  Client(String clientID, String doa, String name, String dob, String ssn, String address, String followUpDate, String firm, String phase, String phaseDate, String hashtag) {
+        this(clientID, doa, name, dob, ssn, address, followUpDate, firm, phase, phaseDate, hashtag, new ArrayList<>());
 
         }
 
@@ -50,6 +50,7 @@ public record Client(String clientID, String doa, String name, String dob, Strin
      * An alternative would've been creating a separate hashmap for the providers, but i need to preserve differences like status and notes
      */
     public void addMedProvider(MedicalProvider provider) {
+        Objects.requireNonNull(provider, "provider cannot be null");
         medicalProviders.add(provider);
     }
 

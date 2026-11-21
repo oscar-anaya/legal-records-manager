@@ -1,4 +1,4 @@
-        <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
         <!--
   CSC 223 - Data Structures and Algorithms
   Professor Emilia Butu
@@ -28,6 +28,12 @@
         <artifactId>poi-ooxml</artifactId>
         <version>5.4.0</version>
     </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.8.1</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 </project>
