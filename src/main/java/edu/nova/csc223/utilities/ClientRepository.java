@@ -1,7 +1,7 @@
 /**
  * CSC 223 - Data Structures and Algorithms
  * Professor Emilia Butu
- * Programming Challenge Module 2 - Baseline Algorithm and Complexity Analysis
+ * Progressive Software Development Project: Legal Records Manager
  *
  * @author Oscar Anaya
  */

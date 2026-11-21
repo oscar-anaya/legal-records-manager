@@ -1,7 +1,7 @@
 /**
  * CSC 223 - Data Structures and Algorithms
  * Professor Emilia Butu
- * Programming Challenge Module 2 - Baseline Algorithm and Complexity Analysis
+ * Progressive Software Development Project: Legal Records Manager
  *
  * @author Oscar Anaya
  */
@@ -24,7 +24,6 @@ public class Main {
 
         ClientRepository repo = new ExcelParser();
         List<Client> clientList = repo.readReport();
-
 
         //Outside loop prints Clients, inside loop prints the medial providers in each Client
         System.out.println("\n\nTotal Clients: " + clientList.size());

@@ -1,7 +1,7 @@
 /**
  * CSC 223 - Data Structures and Algorithms
  * Professor Emilia Butu
- * Programming Challenge Module 2 - Baseline Algorithm and Complexity Analysis
+ * Progressive Software Development Project: Legal Records Manager
  *
  * @author Oscar Anaya
  */
@@ -10,7 +10,6 @@ package edu.nova.csc223.utilities;
 
 import edu.nova.csc223.models.*;
 import java.io.FileInputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -33,7 +32,6 @@ public class ExcelParser implements ClientRepository {
             for (Row row : sheet) {
                 if (row.getRowNum() == 0) continue; // Skip Header
 
-
                 // Row-level skip: check if records were already received and skip if true
                 String receivedDate = getCellValue(row.getCell(0));
                 if (!receivedDate.isEmpty())
@@ -52,7 +50,7 @@ public class ExcelParser implements ClientRepository {
                             getCellValue(row.getCell(5)), // SSN
                             getCellValue(row.getCell(6)), // Address
                             getCellValue(row.getCell(7)), // Follow-up Task
-                            getCellValue(row.getCell(8)), // Firm Name (Shifted for your column map)
+                            getCellValue(row.getCell(8)), // Firm Name
                             getCellValue(row.getCell(9)), // Project Phase
                             getCellValue(row.getCell(10)), // Phase Date
                             getCellValue(row.getCell(11)) // Hashtag
@@ -75,7 +73,6 @@ public class ExcelParser implements ClientRepository {
             }
 
 
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -90,12 +87,6 @@ public class ExcelParser implements ClientRepository {
     private static String getCellValue(Cell cell) {
 
         if (cell == null) return "";
-
-        // If it's a numeric cell that Excel treats as a Date
-        //if (cell.getCellType() == CellType.NUMERIC && DateUtil.isCellDateFormatted(cell)) {
-        //    SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-        //    return sdf.format(cell.getDateCellValue());
-        //}
 
         DataFormatter formatter = new DataFormatter(); // POI utility to reformat each cell column into whatever it's visible
         return formatter.formatCellValue(cell).trim();
