@@ -26,7 +26,7 @@ public class ExcelParserTest {
     @Test
     void testReadReport() throws Exception {
         ClientRepository repo = new ExcelParser();
-        List<Client> clientList = repo.readReport();
+        List<Client> clientList = repo.readReport("sample report.xlsx");
 
         assertNotNull(clientList);
         assertFalse(clientList.isEmpty(), "Parsed client list should not be empty");

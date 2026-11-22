@@ -81,9 +81,10 @@ public class ClientTest {
     @Test
     void testWorstCaseScenario(){
 
+        long pairwiseStart = System.nanoTime();
         Map<String, Client> clientMap = new LinkedHashMap<>();
 
-        for(int i = 0; i < 500; i++) {
+        for(int i = 0; i < 5000; i++) {
 
             Client client = new Client("clientID" + " " + i, "doa", "client name", "dob", "ssn", "address",
                     "followUpDate", "law firm", "phase", "phaseDate", "hashtag", new ArrayList<>());
@@ -96,10 +97,12 @@ public class ClientTest {
             clientMap.put(client.clientID(), client);
         }
 
-        assertEquals(500, clientMap.size());
+        assertEquals(5000, clientMap.size());
         assertEquals(100, clientMap.get("clientID 0").getNumMedItems());
         assertEquals(100, clientMap.get("clientID 499").getNumMedItems());
 
+        long pairwiseEnd = System.nanoTime();
+        System.out.println("Elapsed time for the stress test: " + String.format("%.3f", (pairwiseEnd - pairwiseStart) / 1_000_000_000.0) + " seconds");
     }
 
     /**

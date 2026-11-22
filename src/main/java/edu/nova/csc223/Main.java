@@ -10,6 +10,7 @@ package edu.nova.csc223;
 
 import edu.nova.csc223.models.Client;
 import edu.nova.csc223.models.MedicalProvider;
+import edu.nova.csc223.reports.PrintRawReports;
 import edu.nova.csc223.utilities.ExcelParser;
 import edu.nova.csc223.utilities.ClientRepository;
 import java.util.List;
@@ -23,15 +24,18 @@ public class Main {
         System.out.println("Project Structure Created successfully!");
 
         ClientRepository repo = new ExcelParser();
-        List<Client> clientList = repo.readReport();
+        List<Client> clientList = repo.readReport("sample report.xlsx");
 
-        //Outside loop prints Clients, inside loop prints the medial providers in each Client
-        System.out.println("\n\nTotal Clients: " + clientList.size());
-        for (Client client : clientList) {
-            System.out.println("\n" + client.toString());
-                for (MedicalProvider provider : client.medicalProviders()) {
-                    System.out.println(provider.toString());
-                }
-        }
+        //printRawReport(clientList);
+
+        //printClientReport(clientList);
+
+
+        long pairwiseStart = System.nanoTime();
+        PrintRawReports.printPendingReport(clientList);
+        long pairwiseEnd = System.nanoTime();
+        System.out.println("Elapsed time for the stress test: " + String.format("%.3f", (pairwiseEnd - pairwiseStart) / 1_000_000_000.0) + " seconds");
     }
-}
+
+
+    }
