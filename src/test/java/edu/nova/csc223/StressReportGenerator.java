@@ -4,7 +4,7 @@
  * Progressive Software Development Project: Legal Records Manager
  *
  * StressReportGenerator generates  "stress report.xlsx" for purposes of stress testing
- * Due to apache POI memory constrains, keep number of rows below 60,000
+ * Due to apache POI memory constrains, keep number of rows 100,000 or below this number
  * @author Oscar Anaya
  */
 
@@ -12,7 +12,6 @@ package edu.nova.csc223;
 
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,8 +20,7 @@ public class StressReportGenerator {
 
     public static void main(String[] args) throws IOException {
 
-        generateReport(5000, 20);
-        System.out.println("Generated target/stress_report.xlsx successfully!");
+        generateReport(250, 20);
     }
 
     /**
@@ -33,7 +31,7 @@ public class StressReportGenerator {
      */
     public static void generateReport(int numClients, int providersPerClient) throws IOException {
 
-        File outputFile = new File("src/main/resources/stress report.xlsx");
+        File outputFile = new File("src/main/resources/stress report - " + numClients + " clients.xlsx");
         if (outputFile.getParentFile() != null) {
             outputFile.getParentFile().mkdirs(); // Creates missing folders if needed
         }
@@ -77,9 +75,9 @@ public class StressReportGenerator {
                     row.createCell(9).setCellValue("Records & Bills");
                     row.createCell(10).setCellValue("00/00/0000");
                     row.createCell(11).setCellValue("#TestCase");
-                    row.createCell(12).setCellValue("Medical Provider Name");
+                    row.createCell(12).setCellValue("Medical Provider #" + j);
                     row.createCell(13).setCellValue("00/00/0000");
-                    row.createCell(14).setCellValue("Medical Provider Name\n123 Elden St\nHerndon, VA 20170");
+                    row.createCell(14).setCellValue("Medical Provider #" + j + "\n123 Elden St\nHerndon, VA 20170");
                     row.createCell(15).setCellValue("(000) 000-0000");
                     row.createCell(16).setCellValue("info@myemail.com");
                     row.createCell(17).setCellValue("These are sample notes\nMore notes\nEven more notes");
@@ -88,5 +86,6 @@ public class StressReportGenerator {
             }
             workbook.write(fileOut);
         }
+        System.out.println("Generated target/stress_report - " + numClients + " clients.xlsx successfully!");
     }
 }

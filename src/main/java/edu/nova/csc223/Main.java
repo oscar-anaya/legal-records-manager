@@ -26,16 +26,6 @@ public class Main {
         ClientRepository repo = new ExcelParser();
         List<Client> clientList = repo.readReport("sample report.xlsx");
 
-        //printRawReport(clientList);
-
-        //printClientReport(clientList);
-
-
-        long pairwiseStart = System.nanoTime();
-        PrintRawReports.printPendingReport(clientList);
-        long pairwiseEnd = System.nanoTime();
-        System.out.println("Elapsed time for the stress test: " + String.format("%.3f", (pairwiseEnd - pairwiseStart) / 1_000_000_000.0) + " seconds");
-    }
-
-
+        PrintRawReports.printExcelReport(clientList);
+        }
     }

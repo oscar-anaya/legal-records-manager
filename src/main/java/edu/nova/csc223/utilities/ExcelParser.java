@@ -3,9 +3,12 @@
  * Professor Emilia Butu
  * Progressive Software Development Project: Legal Records Manager
  *
+ * readReport(String) creates a LinkedHashMap with clientID keys in order to parse the Filevine report,
+ * but returns an ArrayList since LinkedHashMap is no longer needed as each Client object holds clientID key.
+ * I will revisit this later in case a LinkedHashMap needs to be returned as the application grows.
+ *
  * @author Oscar Anaya
  */
-
 package edu.nova.csc223.utilities;
 
 import edu.nova.csc223.models.*;
@@ -18,13 +21,19 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelParser implements ClientRepository {
 
-    public ArrayList<Client> readReport() {
+    /**
+     * Parses the Filevine report to generate an ArrayList of Client with pending MedicalProvider objects
+     *
+     * @param reportName name of Filevine report to be read. Need to include extension in filename (.xlsx)
+     * @return reportArray Array list of Clients each with a list of pending MedicalProvider objects
+     */
+    public ArrayList<Client> readReport(String reportName) {
 
-        // Declare local variables
+        // Declare local variables.
         ArrayList<Client> reportArray;
         Map<String, Client> clientMap = new LinkedHashMap<>();
 
-        try (FileInputStream fis = new FileInputStream("src/main/resources/sample report.xlsx");
+        try (FileInputStream fis = new FileInputStream("src/main/resources/" + reportName);
              Workbook clientReport = new XSSFWorkbook(fis)) {
 
             Sheet sheet = clientReport.getSheetAt(0);
