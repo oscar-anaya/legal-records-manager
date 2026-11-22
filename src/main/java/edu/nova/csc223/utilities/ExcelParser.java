@@ -47,6 +47,9 @@ public class ExcelParser implements ClientRepository {
                     continue;
 
                 String clientID = getCellValue(row.getCell(1)); //Client ID
+                if (clientID.isEmpty()) {
+                    break; // Stop parsing at the first blank clientID row
+                }
 
                 // Create client if does not exist and add to clientMap
                 Client client = clientMap.get(clientID);
