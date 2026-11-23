@@ -5,7 +5,11 @@ Student Name: Oscar Anaya
 Course: CSC 223 - Data Structures and Algorithms
 Professor: Emilia Butu
 Java Version: OpenJDK 21.0.12.1
-Current Status: Created initial project structure and README file. Minimum viable features not yet reached.
+Github link: https://github.com/oscar-anaya/legal-records-manager
+
+### Current Status: 
+11/11/2026 - Created initial project structure and README file. Minimum viable features not yet reached.
+11/22/2026 - Created classes for the Client and medical provider models, baseline parsing, JUnit tests and stress testing benchmark. Minimum viable features not yet reached.
 
 ---
 

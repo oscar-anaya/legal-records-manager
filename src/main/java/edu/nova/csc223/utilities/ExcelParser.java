@@ -86,7 +86,7 @@ public class ExcelParser implements ClientRepository {
 
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("Report file not found: " + reportName);;
         }
 
         reportArray = new ArrayList<>(clientMap.values());
